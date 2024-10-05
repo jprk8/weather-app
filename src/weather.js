@@ -19,6 +19,9 @@ async function getWeather(location) {
     try {
         const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${apiKey}`;
         const response = await fetch(url, { mode: 'cors' });
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
         const data = await response.json();
         // grab the desired forecast array from the day array
         const forecast = data.days.map(day => ({
