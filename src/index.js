@@ -1,3 +1,5 @@
 import './style.css';
+import { getWeather } from './weather.js';
 
-console.log('Webpack template with ESLint and Prettier');
+const location = 'san marcos';
+getWeather(location);
