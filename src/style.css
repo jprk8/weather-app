@@ -6,6 +6,7 @@
 
 * {
   margin: 0;
+  font-family: Nunito;
 }
 
 body {
@@ -28,4 +29,61 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #root, #__next {
   isolation: isolate;
+}
+
+.resolved-location {
+  margin-top: 20px;
+}
+
+.weather-container {
+  background-color: rgb(42, 146, 194);
+  width: max-content;
+  color: #eee;
+}
+
+.resolved-location,
+.date-time,
+.description {
+  font-size: 20px;
+}
+
+.weather-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 18px;
+  padding: 0 60px 0 20px;
+}
+
+.weather-card img {
+  display: none;
+  height: 150px;
+  width: auto;
+}
+
+.current-temp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actual-temp {
+  font-size: 100px;
+}
+
+.feelslike {
+  margin-top: -20px;
+}
+
+.max-min {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.conditions {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  border-left: solid 1px white;
+  margin-left: 10px;
 }

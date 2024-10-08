@@ -37,15 +37,18 @@ async function getWeather(location) {
         const weather = {
             location: data.resolvedAddress,
             temp: data.currentConditions.temp,
+            feelslike: data.currentConditions.feelslike,
             condition: data.currentConditions.conditions,
+            description: data.description,
             uv: data.currentConditions.uvindex,
-            precip: data.currentConditions.precip,
+            precip: data.currentConditions.precipprob,
             humidity: data.currentConditions.humidity,
             forecast: forecast,
             icon: data.currentConditions.icon
         };
         console.log(data);
         console.log(weather);
+        return weather;
     } catch (error) {
         console.log(error);
     }
