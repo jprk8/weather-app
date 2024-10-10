@@ -3,18 +3,6 @@ export { getWeather };
 
 const apiKey = 'R7AFFHHQKGCWNZBKSJW2ZCZME';
 
-// data needed:
-// resolvedAddress
-// current temp
-// max temp
-// min temp
-// current condition
-// description
-// precip
-// humidity
-// UV
-// x7 days forecast
-
 async function getWeather(location) {
     try {
         const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${apiKey}`;
@@ -27,8 +15,11 @@ async function getWeather(location) {
         const forecast = data.days.map(day => ({
             datetime: day.datetime,
             temp: day.temp,
+            tempC: convertToCelsius(day.temp),
             max: day.tempmax,
+            maxC: convertToCelsius(day.tempmax),
             min: day.tempmin,
+            minC: convertToCelsius(day.tempmin),
             condition: day.conditions,
             precip: day.precip,
             humidity: day.humidity,
@@ -37,7 +28,9 @@ async function getWeather(location) {
         const weather = {
             location: data.resolvedAddress,
             temp: data.currentConditions.temp,
+            tempC: convertToCelsius(data.currentConditions.temp),
             feelslike: data.currentConditions.feelslike,
+            feelslikeC: convertToCelsius(data.currentConditions.feelslike),
             condition: data.currentConditions.conditions,
             description: data.description,
             uv: data.currentConditions.uvindex,
@@ -52,4 +45,9 @@ async function getWeather(location) {
     } catch (error) {
         console.log(error);
     }
+}
+
+function convertToCelsius(tempF) {
+    const celsius = (tempF - 32) * 5/9;
+    return Math.round(celsius);
 }

@@ -12,6 +12,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  margin: 10px;
 }
 
 img, picture, video, canvas, svg {
@@ -31,20 +32,57 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
-.resolved-location {
+.title {
+  font-size: 36px;
+  font-weight: 800;
+}
+button.submit,
+button.toggle {
+  margin-left: 5px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button.submit {
+  border: 1px solid grey;
+}
+
+button.toggle {
+  background-color: rgb(15, 99, 255);
+  color: #eee;
+  border: none;
+  font-weight: 700;
+}
+
+.container {
+  margin: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(231, 234, 241);
+  width: 820px;
   margin-top: 20px;
+  border-radius: 12px 12px 0 0;
 }
 
 .weather-container {
   background-color: rgb(42, 146, 194);
   color: #eee;
-  width: 900px;
+  width: 820px;
+  border-radius: 0 0 12px 12px;
 }
 
 .resolved-location,
 .date-time,
 .description {
   font-size: 20px;
+}
+
+.resolved-location {
+  font-weight: 800;
 }
 
 .weather-card {
@@ -89,7 +127,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .forecast {
   display: none;
-  width: 550px;
+  width: 600px;
   font-size: 18px;
 }
 
@@ -100,6 +138,14 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .forecast-row {
   display: grid;
-  grid-template-columns: max-content max-content 1fr max-content;
-  gap: 50px;
+  grid-template-columns: 110px max-content max-content 1fr;
+  gap: 40px;
+}
+
+.forecast-row img {
+  justify-self: center;
+}
+
+.forecast-temp {
+  justify-self: end;
 }

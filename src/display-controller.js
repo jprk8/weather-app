@@ -22,6 +22,7 @@ const weatherIcons = {
     windy: windyIcon
 }
 
+const header = document.querySelector('.header');
 const weatherContainer = document.querySelector('.weather-container');
 const resolvedLocation = document.querySelector('.resolved-location');
 const dateTime = document.querySelector('.date-time');
@@ -36,7 +37,8 @@ const precip = document.querySelector('.precip');
 const humidity = document.querySelector('.humidity');
 const uv = document.querySelector('.uv');
 
-function showWeather(weather) {
+function showWeather(weather, fahrenheit) {
+    header.style.cssText = 'padding: 14px;';
     resolvedLocation.textContent = weather.location;
     const today = new Date(weather.forecast[0].datetime.replace('-', '/'));
     dateTime.textContent = format(today, 'PPPP');
@@ -44,9 +46,17 @@ function showWeather(weather) {
     weatherContainer.style.cssText = 'padding: 20px';
     currentIcon.src = weatherIcons[camelize(weather.icon)];
     currentIcon.style.display = 'block';
-    actualTemp.textContent = `${Math.round(weather.temp)}℉`;
-    feelslike.textContent = `Feels like ${Math.round(weather.feelslike)}℉`;
-    maxMin.textContent = `H: ${Math.round(weather.forecast[0].max)}℉ / L: ${Math.round(weather.forecast[0].min)}℉`;
+
+    if (fahrenheit ) {
+        actualTemp.textContent = `${Math.round(weather.temp)}℉`;
+        feelslike.textContent = `Feels like ${Math.round(weather.feelslike)}℉`;
+        maxMin.textContent = `H: ${Math.round(weather.forecast[0].max)}℉ / L: ${Math.round(weather.forecast[0].min)}℉`;
+    } else {
+        actualTemp.textContent = `${Math.round(weather.tempC)}℃`;
+        feelslike.textContent = `Feels like ${Math.round(weather.feelslikeC)}℃`;
+        maxMin.textContent = `H: ${Math.round(weather.forecast[0].maxC)}℃ / L: ${Math.round(weather.forecast[0].minC)}℃`;
+    }
+
     condition.textContent = `Condition: ${weather.condition}`;
     conditions.style.cssText = 'padding: 10px 20px';
     precip.textContent = `Precipitation: ${weather.precip}%`;
@@ -56,7 +66,7 @@ function showWeather(weather) {
 
 const forecast = document.querySelector('.forecast');
 
-function showForecast(weather) {
+function showForecast(weather, fahrenheit) {
     const removeForecast = document.querySelectorAll('.forecast > *');
     removeForecast.forEach((item) => {
         forecast.removeChild(item);
@@ -77,12 +87,19 @@ function showForecast(weather) {
         condition.className = 'forecast-condition';
         temp.className = 'forecast-temp';
         const shortDate = new Date(weather.forecast[i].datetime.replace('-', '/'));
-        date.textContent = format(shortDate, 'MM/dd');
+        date.textContent = format(shortDate, 'MM/dd EEE');
         icon.src = weatherIcons[camelize(weather.forecast[i].icon)];
         condition.textContent = weather.forecast[i].condition;
-        const max = Math.round(weather.forecast[i].max);
-        const min = Math.round(weather.forecast[i].min);
-        temp.textContent = `H: ${max}℉ / L: ${min}℉`;
+        if (fahrenheit) {
+            const max = Math.round(weather.forecast[i].max);
+            const min = Math.round(weather.forecast[i].min);
+            temp.textContent = `H: ${max}℉ / L: ${min}℉`;
+        } else {
+            const max = Math.round(weather.forecast[i].maxC);
+            const min = Math.round(weather.forecast[i].minC);
+            temp.textContent = `H: ${max}℃ / L: ${min}℃`;
+        }
+
         row.appendChild(date);
         row.appendChild(icon);
         row.appendChild(condition);
