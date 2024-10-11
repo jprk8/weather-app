@@ -47,6 +47,14 @@ function showWeather(weather, fahrenheit) {
     currentIcon.src = weatherIcons[camelize(weather.icon)];
     currentIcon.style.display = 'block';
 
+    if (weather.icon.includes('day')) {
+        weatherContainer.style.backgroundColor = 'rgb(42, 146, 194)';
+    } else if (weather.icon.includes('night')) {
+        weatherContainer.style.backgroundColor = 'rgb(13, 28, 63)';
+    } else {
+        weatherContainer.style.backgroundColor = 'rgb(102, 107, 121)';
+    }
+
     if (fahrenheit ) {
         actualTemp.textContent = `${Math.round(weather.temp)}℉`;
         feelslike.textContent = `Feels like ${Math.round(weather.feelslike)}℉`;

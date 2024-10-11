@@ -35,12 +35,29 @@ p, h1, h2, h3, h4, h5, h6 {
 .title {
   font-size: 36px;
   font-weight: 800;
+  text-align: center;
+  margin-bottom: 20px;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+input[type='text'] {
+  background-color: #ebebeb;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 16px;
+  width: 300px;
+}
+
 button.submit,
 button.toggle {
   margin-left: 5px;
-  border-radius: 8px;
-  padding: 4px 8px;
+  border-radius: 16px;
+  padding: 4px 12px;
   cursor: pointer;
 }
 
@@ -56,22 +73,21 @@ button.toggle {
 }
 
 .container {
-  margin: 20px;
+  width: 820px;
+  margin: auto;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   background-color: rgb(231, 234, 241);
-  width: 820px;
   margin-top: 20px;
   border-radius: 12px 12px 0 0;
 }
 
 .weather-container {
-  background-color: rgb(42, 146, 194);
+  /* background-color: rgb(42, 146, 194); */
   color: #eee;
-  width: 820px;
   border-radius: 0 0 12px 12px;
 }
 
@@ -102,6 +118,7 @@ button.toggle {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 240px;
 }
 
 .actual-temp {
@@ -127,7 +144,7 @@ button.toggle {
 
 .forecast {
   display: none;
-  width: 600px;
+  width: 620px;
   font-size: 18px;
 }
 
