@@ -39,3 +39,14 @@ toggleBtn.addEventListener('click', (e) => {
     showForecast(weatherData, fahrenheit);
   }
 });
+
+const home = getWeather('San Diego');
+home
+  .then((response) => {
+    weatherData = response;
+    showWeather(weatherData, fahrenheit);
+    showForecast(weatherData, fahrenheit);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
